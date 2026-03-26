@@ -35,9 +35,13 @@ class WindowInterface:
                         self.update_display(display)
                 return
 
-    def delete(self,display):
+    def delete(self,display,event=None):
         if self.display_value == "Error":
             self.clear(display)
+            return
+        if event:
+            self.display_value = self.display_value[:-1]
+            self.update_display(display)
             return
         self.display_value = self.display_value[:-1]
         self.update_display(display)
@@ -83,9 +87,13 @@ class WindowInterface:
                 return
 
 
-    def button(self,label,display):
+    def button(self,label,display,event=None):
         if self.display_value == "Error":
             self.clear(display)
+            return
+        if event:
+            self.display_value += event.char
+            self.update_display(display)
             return
         self.display_value += label
         self.update_display(display)
@@ -106,7 +114,7 @@ class WindowInterface:
 
 
         #Display
-        display = Label(window,text=self.display_value ,height=6, justify="right")
+        display = Label(window,text=self.display_value ,height=6, justify="right",background="#A9A9A9",)
         display.grid(row=0, column=0, columnspan=10, sticky="nsew")
 
         #Buttons
@@ -130,7 +138,10 @@ class WindowInterface:
         Button(window,text="<",command=lambda display=display:self.delete(display),width=10,height=4).grid(row=1, column=3)
         Button(window,text="/",command=lambda label="/":self.button(label,display),width=10,height=4).grid(row=1, column=4)
         Button(window,text="x²",command=lambda display=display:self.power(display),width=10,height=4).grid(row=1, column=1)
-
+        binds = ["0","1","2","3","4","5","6","7","8","9","*","/","+","-","."]
+        for bind_value in binds:
+             window.bind(bind_value,func=lambda label=bind_value:self.button(label=label,event=label,display=display))
+        window.bind("<BackSpace>", func=lambda label="<BackSpace>": self.delete(event=label, display=display))
         window.mainloop()
 
     def update_display(self,display):
