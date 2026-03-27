@@ -95,29 +95,9 @@ This project was created to:
 
 ---
 
-## ⚠️ Notes
-
-* The project uses `eval()` to evaluate expressions, which is not recommended for production environments due to security concerns.
-* Future improvements may include:
-
-  * Safer expression parsing
-  * Support for more complex operations
-  * Better error handling
-
----
-
-## 💡 Future Improvements
-
-* Dark/light theme
-* Calculation history
-* Button animations
-* Support for parentheses
-* Version using PyQt or another advanced GUI framework
-
----
 
 ## 👤 Author
 
-Luiz Henrique
+Luiz Henrique Martins Dias
 
 ---
