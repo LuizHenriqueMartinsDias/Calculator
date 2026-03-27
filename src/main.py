@@ -1,7 +1,8 @@
-from window import WindowInterface
+from src.calculator.ui import  CalculatorUI
+
 
 def main():
-    window = WindowInterface()
+    window = CalculatorUI()
     window.create_window()
 if __name__ == "__main__":
     main()
